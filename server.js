@@ -27,9 +27,9 @@ async function createDroneLog(logData) {
   }
 }
 
-async function getDroneLogs(droneId) {
+async function getDroneLogs(droneId, page) {
   const baseURL = process.env.LOG_API
-  const url = `${baseURL}?sort=-created&perPage=12&filter=(drone_id=${droneId})`
+  const url = `${baseURL}?page=${page}&sort=-created&perPage=12&filter=(drone_id=${droneId})`
   const response = await fetch(url);
   const jsonData = await response.json();
   // console.log("API ตอบกลับมาว่า:", jsonData);
@@ -72,7 +72,8 @@ app.get('/status/:droneId',async (req, res) => {
 
 app.get('/logs/:droneId',async (req, res) => {
   const droneId = Number(req.params.droneId);
-  const logs = await getDroneLogs(droneId)
+  const page = req.query.page || 1;
+  const logs = await getDroneLogs(droneId,page)
   res.json(logs)
 })
 
@@ -80,8 +81,16 @@ app.post('/logs',async (req, res) => {
 
   try{
     // create new log item
-    const data = req.body
-    const resultData = await createDroneLog(data)
+    // const data = req.body
+    const { drone_id, drone_name, country, celsius } = req.body;
+    if (!drone_id || !drone_name || !country || celsius === undefined) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "ข้อมูลไม่ครบถ้วน กรุณาส่ง drone_id, drone_name, country และ celsius ให้ครบ" 
+      });
+    }
+    const logData = { drone_id, drone_name, country, celsius };
+    const resultData = await createDroneLog(logData)
     console.log(resultData)
     res.status(201).json({success: true, data: resultData})
     // if(JSON.stringify(resultData) === "{}"){
