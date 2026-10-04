@@ -2,12 +2,37 @@ import 'dotenv/config';
 import express from 'express'
 
 const app = express()
+app.use(express.json());
+
+async function createDroneLog(logData) {
+  const url = process.env.LOG_API
+  const LOG_API_TOKEN = process.env.LOG_API_TOKEN
+  
+  // check log data
+  // if data complete : drone_id, drone_name, country, celsius
+  // return {}
+  const options = {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${LOG_API_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(logData)
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return {}
+  }
+}
 
 async function getDroneLogs(droneId) {
   const baseURL = process.env.LOG_API
-  const url = `${baseURL}?sort=-created&perPage=12&filter={drone_id=${droneId}}`
+  const url = `${baseURL}?sort=-created&perPage=12&filter=(drone_id=${droneId})`
   const response = await fetch(url);
   const jsonData = await response.json();
+  // console.log("API ตอบกลับมาว่า:", jsonData);
   const finalItems = jsonData.items.map((item)=>{
     const {drone_id, drone_name, created, country, celsius} = item
     return{drone_id, drone_name, created, country, celsius}
@@ -52,11 +77,23 @@ app.get('/logs/:droneId',async (req, res) => {
 })
 
 app.post('/logs',async (req, res) => {
-  // create new log item
-  const data = req.body
-  console.log(data)
 
-  res.status(201).json({status:success,data})
+  try{
+    // create new log item
+    const data = req.body
+    const resultData = await createDroneLog(data)
+    console.log(resultData)
+    res.status(201).json({success: true, data: resultData})
+    // if(JSON.stringify(resultData) === "{}"){
+    //   console.log("EQ")
+    //   res.status(400).json({success: false, data: {} })
+    // }else{
+    //   res.status(201).json({success: true, data: resultData})
+    // }
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({success: false})
+  }
 })
 
 const port = process.env.PORT || 8000
