@@ -1,3 +1,4 @@
+/* --- สไตล์ส่วนกลาง (Global Layout) --- */
 body {
   font-family: sans-serif;
   display: flex;
@@ -12,14 +13,23 @@ body {
   padding: 24px 32px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  min-width: 320px;
+  min-width: 340px;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 h2 {
   margin-top: 0;
+  margin-bottom: 20px;
   color: #333;
 }
 
+.loading {
+  color: #888;
+}
+
+/* --- สไตล์สำหรับ Page #1: Config View --- */
 .item {
   margin: 12px 0;
   font-size: 16px;
@@ -35,6 +45,93 @@ h2 {
   margin-left: 8px;
 }
 
-.loading {
-  color: #888;
+/* --- สไตล์สำหรับ Page #2: Form & Input --- */
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input[type="number"],
+input[type="text"] {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.alert {
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.alert.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* --- สไตล์เผื่อไว้สำหรับ Page #3: Table Logs --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
 }

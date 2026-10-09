@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Log Form - Page #2</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="form.js" defer></script>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Page #2: Temperature Log Form</h2>
+
+    <!-- แสดงสถานะแจ้งเตือนเมื่อยังไม่โหลด Config จาก Page #1 -->
+    <div id="alert-box" class="alert" style="display: none;"></div>
+
+    <form id="temperature-form">
+      <div class="form-group">
+        <label for="celsius">Temperature in celsius:</label>
+        <input 
+          type="number" 
+          id="celsius" 
+          name="celsius" 
+          step="any" 
+          placeholder="ระบุอุณหภูมิ (องศาเซลเซียส)" 
+          required
+        >
+      </div>
+
+      <button type="submit" id="submit-btn">Submit data</button>
+    </form>
+  </div>
+
+</body>
+</html>

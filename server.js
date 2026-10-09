@@ -23,8 +23,12 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'config.html'));
 });
 
-app.get('/config', (req, res) => {
+app.get('/configs', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'config.html'));
+});
+
+app.get('/form', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'form.html'));
 });
 
 async function createDroneLog(logData) {
