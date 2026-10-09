@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>View Logs - Page #3</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* สไตล์เพิ่มเติมสำหรับปุ่มแบ่งหน้า (Pagination) */
+    .pagination-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+    }
+    .pagination-btn {
+      width: auto;
+      padding: 6px 14px;
+      font-size: 14px;
+    }
+    #page-info {
+      font-weight: bold;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" style="max-width: 800px;">
+    <h2>Page #3: View Logs</h2>
+
+    <div id="status-message" class="loading">กำลังโหลดข้อมูล Logs...</div>
+
+    <div id="table-container" style="display: none;">
+      <table>
+        <thead>
+          <tr>
+            <th>Created</th>
+            <th>Country</th>
+            <th>Drone ID</th>
+            <th>Drone Name</th>
+            <th>Celsius</th>
+          </tr>
+        </thead>
+        <tbody id="logs-tbody">
+          <!-- แถวข้อมูลจะถูกสร้างด้วย logs.js -->
+        </tbody>
+      </table>
+
+      <!-- ส่วนควบคุม Pagination สำหรับคะแนนพิเศษ -->
+      <div class="pagination-controls">
+        <button id="prev-btn" class="pagination-btn" disabled>← ก่อนหน้า</button>
+        <span id="page-info">หน้า 1</span>
+        <button id="next-btn" class="pagination-btn">ถัดไป →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="logs.js"></script>
+</body>
+</html>

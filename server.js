@@ -31,6 +31,10 @@ app.get('/form', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'form.html'));
 });
 
+app.get('/logs-view', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'logs.html'));
+});
+
 async function createDroneLog(logData) {
   const url = process.env.LOG_API
   const LOG_API_TOKEN = process.env.LOG_API_TOKEN
