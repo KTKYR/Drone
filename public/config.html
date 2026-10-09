@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Drone Config - Page #1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="card">
+    <h2>Page #1: Drone Config</h2>
+    
+    <div id="status-message" class="loading">กำลังโหลดข้อมูล...</div>
+
+    <div id="config-content" style="display: none;">
+      <div class="item">
+        <span class="label">Drone ID:</span>
+        <span class="value" id="val-drone-id">-</span>
+      </div>
+      <div class="item">
+        <span class="label">Drone Name:</span>
+        <span class="value" id="val-drone-name">-</span>
+      </div>
+      <div class="item">
+        <span class="label">Light:</span>
+        <span class="value" id="val-light">-</span>
+      </div>
+      <div class="item">
+        <span class="label">Country:</span>
+        <span class="value" id="val-country">-</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+</body>
+</html>

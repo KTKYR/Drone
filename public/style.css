@@ -1,0 +1,40 @@
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  background-color: #f7f9fa;
+  margin: 0;
+}
+
+.card {
+  background: #ffffff;
+  padding: 24px 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 320px;
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.item {
+  margin: 12px 0;
+  font-size: 16px;
+}
+
+.label {
+  font-weight: bold;
+  color: #555;
+}
+
+.value {
+  color: #111;
+  margin-left: 8px;
+}
+
+.loading {
+  color: #888;
+}
