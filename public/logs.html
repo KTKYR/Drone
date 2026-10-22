@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>View Logs - Page #3</title>
   <link rel="stylesheet" href="style.css">
+  <script src="logs.js" defer></script>
+  <script src="navbar.js"></script>
   <style>
     /* สไตล์เพิ่มเติมสำหรับปุ่มแบ่งหน้า (Pagination) */
     .pagination-controls {
@@ -24,6 +26,14 @@
   </style>
 </head>
 <body>
+  <nav class="navbar">
+    <div class="nav-brand">Drone Dashboard</div>
+    <div class="nav-links">
+      <a href="/">Config</a>
+      <a href="/form">Form</a>
+      <a href="/logs-view" class="active">Logs</a>
+    </div>
+  </nav>
 
   <div class="card" style="max-width: 800px;">
     <h2>Page #3: View Logs</h2>
@@ -55,6 +65,5 @@
     </div>
   </div>
 
-  <script src="logs.js"></script>
 </body>
 </html>

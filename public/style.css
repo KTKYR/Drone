@@ -1,9 +1,8 @@
-/* --- สไตล์ส่วนกลาง (Global Layout) --- */
 body {
   font-family: sans-serif;
   display: flex;
   justify-content: center;
-  padding-top: 50px;
+  padding-top: 80px;
   background-color: #f7f9fa;
   margin: 0;
 }
@@ -27,6 +26,82 @@ h2 {
 
 .loading {
   color: #888;
+}
+
+/* --- Navigation Bar (Minimalist Tab Style) --- */
+.navbar {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between; /* ดันเนื้อหาซ้าย-ขวา ให้อยู่ห่างกันคนละฝั่ง */
+  align-items: center;
+  padding: 0 40px; /* ระยะขอบซ้ายขวา (ปรับตัวเลขได้ตามความชอบ) */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ebebeb;
+  z-index: 1000;
+}
+
+/* --- ชื่อโปรเจกต์ (จะถูกดันไปอยู่ซ้ายสุดอัตโนมัติ) --- */
+.nav-brand {
+  /* ลบ position: absolute; ของเดิมทิ้งได้เลย */
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* --- กลุ่มเมนู (จะถูกดันไปอยู่ขวาสุดอัตโนมัติ) --- */
+/* --- กลุ่มเมนู --- */
+.nav-links {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-links a {
+  color: #70757a;
+  text-decoration: none;
+  padding: 16px 8px; /* ปรับลด padding ซ้ายขวาให้เส้นขีดพอดีกับความยาวคำ */
+  margin: 0 8px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative; /* สำคัญมาก เพื่อให้เส้นอ้างอิงตำแหน่งคำได้ */
+  transition: color 0.2s ease;
+}
+
+/* --- สร้างเส้นซ่อนไว้ใต้ตัวอักษร --- */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%; /* ให้เส้นเริ่มงอกออกจากกึ่งกลาง */
+  transform: translateX(-50%);
+  width: 0; /* เริ่มต้นซ่อนเส้นไว้ */
+  height: 3px;
+  background-color: #1a73e8;
+  transition: width 0.3s ease-out; /* ความนุ่มนวลตอนเส้นกางออก */
+}
+
+/* --- ตอนเอาเมาส์ชี้ (Hover) --- */
+.nav-links a:hover {
+  color: #1a73e8;
+}
+
+.nav-links a:hover::after {
+  width: 100%; /* เส้นกางออกเต็มคำเมื่อเอาเมาส์ชี้ */
+}
+
+/* --- ตอนกดอยู่ในหน้านั้น (Active) --- */
+.nav-links a.active {
+  color: #1a73e8;
+}
+
+.nav-links a.active::after {
+  width: 100%; /* แสดงเส้นค้างไว้สำหรับหน้าที่กำลังเปิดอยู่ */
 }
 
 /* --- สไตล์สำหรับ Page #1: Config View --- */
