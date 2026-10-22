@@ -11,12 +11,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedConfig = JSON.parse(localStorage.getItem('droneConfig'));
 
   if (!savedConfig || !savedConfig.drone_id) {
-    statusMsg.textContent = "ไม่พบข้อมูล Drone Config กรุณาเปิด Config ก่อน";
+    statusMsg.textContent = "ไม่พบข้อมูล Drone Config กรุณาเปิดหน้า Config ก่อน";
     statusMsg.style.color = "red";
     return;
   }
 
   droneId = savedConfig.drone_id;
+
+  function formatThaiTime(utcString) {
+  if (!utcString) return '-';
+  const d = new Date(utcString); // เบราว์เซอร์จะรับค่าไปบวก 7 ชั่วโมงเป็นเวลาไทยให้อัตโนมัติ
+
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  const hours = String(d.getHours()).padStart(2, '0');
+  const minutes = String(d.getMinutes()).padStart(2, '0');
+  const seconds = String(d.getSeconds()).padStart(2, '0');
+  const ms = String(d.getMilliseconds()).padStart(3, '0');
+
+  // คืนค่าในรูปแบบ YYYY-MM-DD HH:mm:ss.SSS
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${ms}`;
+  }
 
   // ฟังก์ชันดึงและแสดงข้อมูล Logs
   async function fetchAndRenderLogs(page) {
@@ -41,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logs.forEach(item => {
           const tr = document.createElement('tr');
           tr.innerHTML = `
-            <td>${item.created || '-'}</td>
+            <td>${formatThaiTime(item.created)}</td>
             <td>${item.country || '-'}</td>
             <td>${item.drone_id}</td>
             <td>${item.drone_name}</td>
