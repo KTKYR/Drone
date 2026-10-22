@@ -61,5 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
     alertBox.textContent = message;
     alertBox.className = `alert ${type}`;
     alertBox.style.display = 'block';
+    
+    // ซ่อนข้อความอัตโนมัติหลังจากผ่านไป 3 วินาที
+    setTimeout(() => {
+      alertBox.style.display = 'none';
+    }, 3000);
   }
 });

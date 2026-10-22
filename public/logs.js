@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedConfig = JSON.parse(localStorage.getItem('droneConfig'));
 
   if (!savedConfig || !savedConfig.drone_id) {
-    statusMsg.textContent = "ไม่พบข้อมูล Drone Config กรุณาเปิด Page #1 ก่อน";
+    statusMsg.textContent = "ไม่พบข้อมูล Drone Config กรุณาเปิด Config ก่อน";
     statusMsg.style.color = "red";
     return;
   }
