@@ -1,212 +1,274 @@
+/* นำเข้าฟอนต์ Prompt จาก Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap');
+
+/* --- พื้นหลังและฟอนต์หลัก --- */
 body {
-  font-family: sans-serif;
+  font-family: 'Prompt', sans-serif; /* ใช้ฟอนต์ Prompt ทั้งโปรเจกต์ */
+  background-color: #f4f7f6; /* เปลี่ยนพื้นหลังเป็นสีเทาอ่อนให้การ์ดสีขาวดูโดดเด่น */
+  margin: 0;
+  padding-top: 80px;
   display: flex;
   justify-content: center;
-  padding-top: 80px;
-  background-color: #f7f9fa;
-  margin: 0;
-}
-
-.card {
-  background: #ffffff;
-  padding: 24px 32px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  min-width: 340px;
-  max-width: 800px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
   color: #333;
 }
 
-.loading {
-  color: #888;
-}
-
-/* --- Navigation Bar (Minimalist Tab Style) --- */
+/* --- Navigation Bar --- */
 .navbar {
   background-color: #ffffff;
   display: flex;
-  justify-content: space-between; /* ดันเนื้อหาซ้าย-ขวา ให้อยู่ห่างกันคนละฝั่ง */
+  justify-content: space-between;
   align-items: center;
-  padding: 0 40px; /* ระยะขอบซ้ายขวา (ปรับตัวเลขได้ตามความชอบ) */
+  padding: 0 40px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 60px;
   box-sizing: border-box;
-  border-bottom: 1px solid #ebebeb;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04); /* เพิ่มเงาบางๆ ใต้ Navbar */
   z-index: 1000;
 }
 
-/* --- ชื่อโปรเจกต์ (จะถูกดันไปอยู่ซ้ายสุดอัตโนมัติ) --- */
 .nav-brand {
-  /* ลบ position: absolute; ของเดิมทิ้งได้เลย */
   font-size: 20px;
-  font-weight: bold;
-  color: #333;
+  font-weight: 600;
+  color: #1a73e8; /* เน้นชื่อโปรเจกต์ด้วยสีฟ้า Google */
 }
 
-/* --- กลุ่มเมนู (จะถูกดันไปอยู่ขวาสุดอัตโนมัติ) --- */
-/* --- กลุ่มเมนู --- */
 .nav-links {
   display: flex;
-  gap: 12px;
 }
 
 .nav-links a {
   color: #70757a;
   text-decoration: none;
-  padding: 16px 8px; /* ปรับลด padding ซ้ายขวาให้เส้นขีดพอดีกับความยาวคำ */
+  padding: 16px 12px;
   margin: 0 8px;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  position: relative; /* สำคัญมาก เพื่อให้เส้นอ้างอิงตำแหน่งคำได้ */
+  position: relative;
   transition: color 0.2s ease;
 }
 
-/* --- สร้างเส้นซ่อนไว้ใต้ตัวอักษร --- */
+/* เส้นสไลด์ใต้เมนู */
 .nav-links a::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%; /* ให้เส้นเริ่มงอกออกจากกึ่งกลาง */
+  left: 50%;
   transform: translateX(-50%);
-  width: 0; /* เริ่มต้นซ่อนเส้นไว้ */
+  width: 0;
   height: 3px;
   background-color: #1a73e8;
-  transition: width 0.3s ease-out; /* ความนุ่มนวลตอนเส้นกางออก */
+  transition: width 0.3s ease-out;
+  border-radius: 3px 3px 0 0; /* ทำให้ขอบเส้นมีความมน */
 }
 
-/* --- ตอนเอาเมาส์ชี้ (Hover) --- */
-.nav-links a:hover {
-  color: #1a73e8;
-}
+.nav-links a:hover, .nav-links a.active { color: #1a73e8; }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-.nav-links a:hover::after {
-  width: 100%; /* เส้นกางออกเต็มคำเมื่อเอาเมาส์ชี้ */
-}
-
-/* --- ตอนกดอยู่ในหน้านั้น (Active) --- */
-.nav-links a.active {
-  color: #1a73e8;
-}
-
-.nav-links a.active::after {
-  width: 100%; /* แสดงเส้นค้างไว้สำหรับหน้าที่กำลังเปิดอยู่ */
-}
-
-/* --- สไตล์สำหรับ Page #1: Config View --- */
-.item {
-  margin: 12px 0;
-  font-size: 16px;
-}
-
-.label {
-  font-weight: bold;
-  color: #555;
-}
-
-.value {
-  color: #111;
-  margin-left: 8px;
-}
-
-/* --- สไตล์สำหรับ Page #2: Form & Input --- */
-.form-group {
-  margin-bottom: 16px;
+/* --- การ์ดเนื้อหา (Card) --- */
+.container {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-}
-
-label {
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #555;
-}
-
-input[type="number"],
-input[type="text"] {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-  outline: none;
+  justify-content: center;
+  padding: 20px;
   box-sizing: border-box;
 }
 
-input[type="number"]:focus,
-input[type="text"]:focus {
-  border-color: #007bff;
+.card {
+  background: #ffffff;
+  padding: 32px 40px;
+  border-radius: 16px; /* ขอบมนขึ้น ดูละมุน */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); /* เงาฟุ้งๆ ดูมีมิติ */
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-button {
+h2 {
+  margin-top: 0;
+  color: #202124;
+  font-weight: 600;
+  border-bottom: 2px solid #f0f2f5;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+/* --- ฟอร์มและช่องกรอกข้อมูล --- */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #5f6368;
+}
+
+input[type="number"], input[type="text"] {
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
+  padding: 12px 16px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Prompt', sans-serif;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* เอฟเฟกต์ตอนคลิกพิมพ์ข้อมูล */
+input[type="number"]:focus, input[type="text"]:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* เกิดวงแหวนสีฟ้าล้อมรอบ */
+}
+
+/* --- ปุ่ม Submit --- */
+button {
+  background-color: #1a73e8;
   color: white;
   border: none;
-  border-radius: 6px;
+  padding: 14px 24px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
+  font-family: 'Prompt', sans-serif;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  width: 100%;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
-button:hover {
-  background-color: #0056b3;
-}
+button:hover { background-color: #1557b0; }
+button:active { transform: scale(0.98); /* ลูกเล่นปุ่มยุบตัวตอนกดคลิก */ }
 
-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
+/* --- แจ้งเตือน (Alert Box) --- */
 .alert {
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
+  animation: fadeIn 0.3s ease; /* อนิเมชันเด้งขึ้นมา */
+}
+.alert.success { background-color: #e6f4ea; color: #137333; }
+.alert.error { background-color: #fce8e6; color: #c5221f; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.alert.error {
-  background-color: #f8d7da;
-  color: #721c24;
-}
-
-.alert.success {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-/* --- สไตล์เผื่อไว้สำหรับ Page #3: Table Logs --- */
+/* --- ตาราง Logs --- */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 th, td {
-  border: 1px solid #ddd;
-  padding: 10px;
+  padding: 14px 16px;
   text-align: left;
-  font-size: 14px;
+  border-bottom: 1px solid #f0f2f5;
 }
 
 th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-  color: #333;
+  background-color: #f8f9fa;
+  color: #5f6368;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-tr:nth-child(even) {
-  background-color: #fafafa;
+/* เปลี่ยนสีแถวตารางเวลาเอาเมาส์ชี้ */
+tr:hover td {
+  background-color: #f8f9fa; 
+}
+
+/* --- ปุ่มเปลี่ยนหน้า (Pagination) --- */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.pagination button {
+  width: auto;
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.pagination button:disabled {
+  background-color: #e8eaed;
+  color: #9aa0a6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================
+   Responsive Design (รองรับมือถือและแท็บเล็ต)
+   ========================================= */
+
+/* สำหรับหน้าจอขนาดแท็บเล็ตและมือถือทั่วไป (ความกว้างไม่เกิน 768px) */
+@media (max-width: 768px) {
+  /* ปรับแถบ Navbar ให้ระยะห่างแคบลง */
+  .navbar {
+    padding: 0 20px;
+  }
+  .nav-brand {
+    font-size: 16px;
+  }
+  .nav-links a {
+    padding: 16px 8px;
+    margin: 0 4px;
+    font-size: 12px;
+  }
+
+  /* ปรับลด Padding ของการ์ดไม่ให้กินพื้นที่หน้าจอมากไป */
+  .container {
+    padding: 16px;
+  }
+  
+/* บีบการ์ดให้แคบลงเพื่อให้เหลือพื้นที่ขอบซ้าย-ขวา */
+  .card {
+    width: 90%; 
+    padding: 24px;
+    margin: 0 auto; /* บังคับให้อยู่กึ่งกลาง */
+  }
+
+  /* จัดการตาราง (Logs) ให้สามารถปัดซ้าย-ขวาได้เมื่อหน้าจอแคบ */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap; 
+  }
+}
+
+/* สำหรับหน้าจอมือถือขนาดเล็กมากๆ (ความกว้างไม่เกิน 480px) */
+@media (max-width: 480px) {
+  /* จับ Navbar ซ้อนกันเป็น 2 บรรทัด (ชื่อโปรเจกต์อยู่บน เมนูอยู่ล่าง) */
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding-top: 12px;
+  }
+  .nav-links {
+    margin-top: 8px;
+  }
+  body {
+    padding-top: 110px; /* ดันเนื้อหาลงมาหลบ Navbar ที่สูงขึ้น */
+  }
+
+  /* ปรับปุ่ม Pagination ในหน้า Logs ให้เรียงต่อกันเป็นแนวตั้ง */
+  .pagination {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pagination button {
+    width: 100%;
+  }
 }
