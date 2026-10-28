@@ -19,7 +19,7 @@
 
 
 ### 🛡️ การทำงานของ Backend (`server.js`)
-
+---
 ไฟล์ `server.js` เป็นส่วนสำคัญในการจัดการระบบหลังบ้าน (Node.js/Express) โดยมีหน้าที่หลักดังนี้:
 * **Static File Serving:** จัดการ Routing เพื่อแสดงผลไฟล์ Frontend (HTML, CSS, JavaScript) ที่อยู่ในโฟลเดอร์ `public` ให้ผู้ใช้งาน
 * **Secure API Proxy:** ทำหน้าที่เป็นตัวกลาง (Gateway) รับคำขอจากหน้าเว็บไซต์ นำมารวมกับ `LOG_API_TOKEN` ที่ดึงมาจาก Environment Variables แล้วจึงส่ง Request ไปหา API หลัก วิธีนี้ช่วยป้องกันไม่ให้ Token สำคัญรั่วไหลไปสู่ฝั่ง Client
