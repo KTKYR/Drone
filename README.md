@@ -6,7 +6,7 @@
 
 🔗 **Live Demo:** [Drone Dashboard](https://drone-eight-mu.vercel.app)
 
----
+
 
 ## 🏗️ Architecture Overview
 
@@ -16,7 +16,7 @@
 2. **Backend (Proxy Server):** พัฒนาด้วย Node.js และ Express.js ทำหน้าที่เป็นตัวกลางในการสื่อสารกับ API แทนการให้ Frontend เรียก API โดยตรง ระบบจะส่ง Request มาที่ Backend เพื่อให้ Backend แนบ `API_TOKEN` และตั้งค่า Headers ก่อนส่งต่อไปยังเซิร์ฟเวอร์หลัก 
 3. **Security:** TOKEN และ URL ของ API จะถูกเก็บซ่อนไว้อย่างปลอดภัยในไฟล์ `.env` (Environment Variables) ซึ่งจะไม่ถูกเปิดเผยสู่สาธารณะ
 
----
+
 
 ### 🛡️ การทำงานของ Backend (`server.js`)
 ไฟล์ `server.js` เป็นส่วนสำคัญในการจัดการระบบหลังบ้าน (Node.js/Express) โดยมีหน้าที่หลักดังนี้:
@@ -25,7 +25,7 @@
 * **Data Validation & Routing:** จัดการ Endpoint ต่างๆ (เช่น `/configs/:droneId`, `/logs`) พร้อมตรวจสอบความครบถ้วนของข้อมูลก่อนบันทึก และคัดกรองเฉพาะ Object ที่จำเป็นส่งกลับไปให้ Frontend เพื่อลดขนาด Bandwidth
 * **Serverless Optimization:** มีการใช้ `path.join(__dirname, ...)` เพื่ออ้างอิงตำแหน่งโฟลเดอร์อย่างแม่นยำ และปิดท้ายด้วย `export default app` เพื่อให้ Code Architecture รองรับการ Deploy เป็น Serverless Function บน Vercel ได้อย่างสมบูรณ์แบบ
 
----
+
 
 ## ⚙️ การทำงานหลักของระบบ
 
@@ -45,7 +45,7 @@
 * **Pagination:** ระบบสามารถแบ่งหน้าข้อมูลและดึงข้อมูลทีละชุด (ชุดละ 12 รายการ) เพื่อไม่ให้โหลดข้อมูลหนักเกินไป
 * **Timezone Conversion:** ข้อมูลเวลาที่ได้รับจาก API ซึ่งเป็นมาตรฐานสากล (UTC) จะถูกสคริปต์ของ Frontend แปลงให้เป็นรูปแบบเวลาของประเทศไทยโดยอัตโนมัติ เพื่อให้ผู้ดูแลระบบสามารถอ่านและวิเคราะห์ข้อมูลได้ง่ายขึ้น
 
----
+
 
 ## 🚀 Deployment
 
