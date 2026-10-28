@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const alertBox = document.getElementById('alert-box');
   const submitBtn = document.getElementById('submit-btn');
 
-  // ดึงข้อมูล Config ที่บันทึกไว้ใน localStorage จาก Page #1
+  // ดึงข้อมูล Config ที่บันทึกไว้ใน localStorage
   const savedConfig = JSON.parse(localStorage.getItem('droneConfig'));
 
-  // ตรวจสอบว่ามีข้อมูล Config หรือยัง
+  // ตรวจสอบว่ามีข้อมูล Config
   if (!savedConfig || !savedConfig.drone_id) {
-    showAlert("ไม่พบข้อมูล Drone Config กรุณาเปิด Page #1 ก่อน", "error");
+    showAlert("ไม่พบข้อมูล Drone Config กรุณาเปิดหน้า CONFIG ก่อน", "error");
     submitBtn.disabled = true;
     return;
   }
@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const tempInput = document.getElementById('celsius').value;
     const celsiusValue = Number(tempInput);
 
-    // เตรียม Payload เฉพาะข้อมูลที่โจทย์ระบุ
     const logData = {
       drone_id: savedConfig.drone_id,
       drone_name: savedConfig.drone_name,
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.textContent = "กำลังส่งข้อมูล...";
 
     try {
-      // เรียกใช้ API Server ของ Assignment #1 (POST /logs)
       const response = await fetch('/logs', {
         method: 'POST',
         headers: {
@@ -62,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     alertBox.className = `alert ${type}`;
     alertBox.style.display = 'block';
     
-    // ซ่อนข้อความอัตโนมัติหลังจากผ่านไป 3 วินาที
     setTimeout(() => {
       alertBox.style.display = 'none';
     }, 3000);

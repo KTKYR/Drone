@@ -1,10 +1,8 @@
-/* นำเข้าฟอนต์ Prompt จาก Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap');
 
-/* --- พื้นหลังและฟอนต์หลัก --- */
 body {
-  font-family: 'Prompt', sans-serif; /* ใช้ฟอนต์ Prompt ทั้งโปรเจกต์ */
-  background-color: #f4f7f6; /* เปลี่ยนพื้นหลังเป็นสีเทาอ่อนให้การ์ดสีขาวดูโดดเด่น */
+  font-family: 'Prompt', sans-serif;
+  background-color: #f4f7f6;
   margin: 0;
   padding-top: 80px;
   display: flex;
@@ -12,7 +10,6 @@ body {
   color: #333;
 }
 
-/* --- Navigation Bar --- */
 .navbar {
   background-color: #ffffff;
   display: flex;
@@ -25,14 +22,14 @@ body {
   width: 100%;
   height: 60px;
   box-sizing: border-box;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04); /* เพิ่มเงาบางๆ ใต้ Navbar */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   z-index: 1000;
 }
 
 .nav-brand {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
-  color: #1a73e8; /* เน้นชื่อโปรเจกต์ด้วยสีฟ้า Google */
+  color: #1a73e8;
 }
 
 .nav-links {
@@ -52,7 +49,6 @@ body {
   transition: color 0.2s ease;
 }
 
-/* เส้นสไลด์ใต้เมนู */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -63,13 +59,12 @@ body {
   height: 3px;
   background-color: #1a73e8;
   transition: width 0.3s ease-out;
-  border-radius: 3px 3px 0 0; /* ทำให้ขอบเส้นมีความมน */
+  border-radius: 3px 3px 0 0;
 }
 
 .nav-links a:hover, .nav-links a.active { color: #1a73e8; }
 .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-/* --- การ์ดเนื้อหา (Card) --- */
 .container {
   width: 100%;
   display: flex;
@@ -81,8 +76,8 @@ body {
 .card {
   background: #ffffff;
   padding: 32px 40px;
-  border-radius: 16px; /* ขอบมนขึ้น ดูละมุน */
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); /* เงาฟุ้งๆ ดูมีมิติ */
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   width: 100%;
   max-width: 800px;
   box-sizing: border-box;
@@ -98,7 +93,6 @@ h2 {
   margin-bottom: 24px;
 }
 
-/* --- ฟอร์มและช่องกรอกข้อมูล --- */
 .form-group {
   margin-bottom: 20px;
 }
@@ -121,14 +115,12 @@ input[type="number"], input[type="text"] {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* เอฟเฟกต์ตอนคลิกพิมพ์ข้อมูล */
 input[type="number"]:focus, input[type="text"]:focus {
   outline: none;
   border-color: #1a73e8;
-  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* เกิดวงแหวนสีฟ้าล้อมรอบ */
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
 }
 
-/* --- ปุ่ม Submit --- */
 button {
   background-color: #1a73e8;
   color: white;
@@ -144,16 +136,15 @@ button {
 }
 
 button:hover { background-color: #1557b0; }
-button:active { transform: scale(0.98); /* ลูกเล่นปุ่มยุบตัวตอนกดคลิก */ }
+button:active { transform: scale(0.98); }
 
-/* --- แจ้งเตือน (Alert Box) --- */
 .alert {
   padding: 12px 16px;
   border-radius: 8px;
   margin-bottom: 20px;
   font-weight: 500;
   text-align: center;
-  animation: fadeIn 0.3s ease; /* อนิเมชันเด้งขึ้นมา */
+  animation: fadeIn 0.3s ease;
 }
 .alert.success { background-color: #e6f4ea; color: #137333; }
 .alert.error { background-color: #fce8e6; color: #c5221f; }
@@ -163,7 +154,6 @@ button:active { transform: scale(0.98); /* ลูกเล่นปุ่มย�
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- ตาราง Logs --- */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -183,12 +173,10 @@ th {
   font-size: 14px;
 }
 
-/* เปลี่ยนสีแถวตารางเวลาเอาเมาส์ชี้ */
 tr:hover td {
   background-color: #f8f9fa; 
 }
 
-/* --- ปุ่มเปลี่ยนหน้า (Pagination) --- */
 .pagination {
   display: flex;
   justify-content: space-between;
@@ -209,13 +197,8 @@ tr:hover td {
   transform: none;
 }
 
-/* =========================================
-   Responsive Design (รองรับมือถือและแท็บเล็ต)
-   ========================================= */
 
-/* สำหรับหน้าจอขนาดแท็บเล็ตและมือถือทั่วไป (ความกว้างไม่เกิน 768px) */
 @media (max-width: 768px) {
-  /* ปรับแถบ Navbar ให้ระยะห่างแคบลง */
   .navbar {
     padding: 0 20px;
   }
@@ -228,19 +211,16 @@ tr:hover td {
     font-size: 12px;
   }
 
-  /* ปรับลด Padding ของการ์ดไม่ให้กินพื้นที่หน้าจอมากไป */
   .container {
     padding: 16px;
   }
   
-/* บีบการ์ดให้แคบลงเพื่อให้เหลือพื้นที่ขอบซ้าย-ขวา */
   .card {
     width: 90%; 
     padding: 24px;
-    margin: 0 auto; /* บังคับให้อยู่กึ่งกลาง */
+    margin: 0 auto;
   }
 
-  /* จัดการตาราง (Logs) ให้สามารถปัดซ้าย-ขวาได้เมื่อหน้าจอแคบ */
   table {
     display: block;
     overflow-x: auto;
@@ -248,9 +228,7 @@ tr:hover td {
   }
 }
 
-/* สำหรับหน้าจอมือถือขนาดเล็กมากๆ (ความกว้างไม่เกิน 480px) */
 @media (max-width: 480px) {
-  /* จับ Navbar ซ้อนกันเป็น 2 บรรทัด (ชื่อโปรเจกต์อยู่บน เมนูอยู่ล่าง) */
   .navbar {
     flex-direction: column;
     height: auto;
@@ -260,10 +238,9 @@ tr:hover td {
     margin-top: 8px;
   }
   body {
-    padding-top: 110px; /* ดันเนื้อหาลงมาหลบ Navbar ที่สูงขึ้น */
+    padding-top: 110px;
   }
 
-  /* ปรับปุ่ม Pagination ในหน้า Logs ให้เรียงต่อกันเป็นแนวตั้ง */
   .pagination {
     flex-direction: column;
     gap: 12px;
