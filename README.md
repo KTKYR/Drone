@@ -4,7 +4,7 @@
 
 โปรเจกต์นี้เป็นการพัฒนาระบบ Web Application สำหรับตรวจสอบและจัดการข้อมูลสถานะของโดรน โดยออกแบบให้มีหน้าจอผู้ใช้งานที่ทันสมัย รองรับการแสดงผลทุกขนาดหน้าจอ (Responsive Design) และมีการจัดการความปลอดภัยของข้อมูลผ่านสถาปัตยกรรมแบบ Client-Server
 
-🔗 **Live Demo:** [คลิกที่นี่เพื่อเข้าสู่เว็บไซต์จริง (Vercel)](https://drone-eight-mu.vercel.app)
+🔗 **Live Demo:** [Drone Dashboard](https://drone-eight-mu.vercel.app)
 
 ---
 
